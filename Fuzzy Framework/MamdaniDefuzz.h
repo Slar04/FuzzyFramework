@@ -35,7 +35,9 @@ namespace fuzzy
 	T MamdaniDefuzz<T>::Evaluate(Expression<T>* l, Expression<T>* r) const
 	{
 		Evaluator<T> e;
-		return Defuzz(e.BuildShape(min, max, step, (ValueModel<T>*) l, r));
+		Evaluator<T>::Shape s = e.BuildShape(min, max, step, (ValueModel<T>*) l, r);
+
+		return Defuzz(s);
 	}
 }
 
