@@ -63,9 +63,6 @@
     <ClInclude Include="Not.h">
       <Filter>Fichiers d%27en-tête\fuzzy</Filter>
     </ClInclude>
-    <ClInclude Include="NotMinus1.h">
-      <Filter>Fichiers d%27en-tête\fuzzy</Filter>
-    </ClInclude>
     <ClInclude Include="Or.h">
       <Filter>Fichiers d%27en-tête\fuzzy</Filter>
     </ClInclude>
@@ -134,6 +131,9 @@
     </ClInclude>
     <ClInclude Include="Evaluator.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="NotMinus.h">
+      <Filter>Fichiers d%27en-tête\fuzzy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

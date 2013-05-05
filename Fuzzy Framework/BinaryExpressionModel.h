@@ -8,7 +8,7 @@ namespace core
 	{
 	public:
 		BinaryExpressionModel() {};
-		BinaryExpressionModel(BinaryExpression<T>* ope, Expression<T>* left, Expression<T>* right): ope(ope), left(left), right(right) {};
+		BinaryExpressionModel(BinaryExpression<T>* operateur, Expression<T>* left, Expression<T>* right): operateur(operateur), left(left), right(right) {};
 		virtual ~BinaryExpressionModel() {};
 		
 		virtual T Evaluate() const;
@@ -18,7 +18,7 @@ namespace core
 		void SetOpe(BinaryExpression<T>*);
 
 	private:
-		BinaryExpression<T>* ope;
+		BinaryExpression<T>* operateur;
 		Expression<T>* left;
 		Expression<T>* right;
 	};
@@ -26,10 +26,10 @@ namespace core
 	template <class T>
 	T BinaryExpressionModel<T>::Evaluate(Expression<T>* l, Expression<T>* r) const
 	{
-		if (ope == NULL)
-			throw new NullExpressionException("ope null");
+		if (operateur == NULL)
+			throw new NullExpressionException("operateur null");
 
-		return ope->Evaluate(l, r);
+		return operateur->Evaluate(l, r);
 	}
 
 	template <class T>
@@ -47,13 +47,13 @@ namespace core
 	template <class T>
 	BinaryExpression<T>* BinaryExpressionModel<T>::GetOpe()
 	{
-		return ope;
+		return operateur;
 	}
 	
 	template <class T>
-	void BinaryExpressionModel<T>::SetOpe(BinaryExpression<T>* _ope)
+	void BinaryExpressionModel<T>::SetOpe(BinaryExpression<T>* o)
 	{
-		ope = _ope;
+		operateur = o;
 	}
 }
 

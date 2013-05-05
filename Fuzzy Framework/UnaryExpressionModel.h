@@ -8,33 +8,33 @@ namespace core
 	{
 	public:
 		UnaryExpressionModel() {};
-		UnaryExpressionModel(UnaryExpression<T>* ope, Expression<T>* operand): ope(ope), operand(operand) {};
+		UnaryExpressionModel(UnaryExpression<T>* operateur, Expression<T>* operande): operateur(operateur), operande(operande) {};
 		virtual ~UnaryExpressionModel() {};
 
 		virtual T Evaluate() const;
 		virtual T Evaluate(Expression*) const;
 
 	private:
-		UnaryExpression<T>* ope;
-		Expression<T>* operand;
+		UnaryExpression<T>* operateur;
+		Expression<T>* operande;
 	};
 
 	template <class T>
 	T UnaryExpressionModel<T>::Evaluate() const
 	{
-		if (operand == NULL)
-			throw new NullExpressionException("operand null");
+		if (operande == NULL)
+			throw new NullExpressionException("operande null");
 
-		return Evaluate(operand);
+		return Evaluate(operande);
 	}
 
 	template <class T>
 	T UnaryExpressionModel<T>::Evaluate(Expression<T>* o) const
 	{
-		if (ope == NULL)
-			throw new NullExpressionException("ope null");
+		if (operateur == NULL)
+			throw new NullExpressionException("operateur null");
 
-		return ope->Evaluate(o);
+		return operateur->Evaluate(o);
 	}
 }
 

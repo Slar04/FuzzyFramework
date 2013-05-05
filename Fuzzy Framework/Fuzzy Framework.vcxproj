@@ -96,7 +96,7 @@
     <ClInclude Include="NaryExpressionModel.h" />
     <ClInclude Include="NaryShadowExpression.h" />
     <ClInclude Include="Not.h" />
-    <ClInclude Include="NotMinus1.h" />
+    <ClInclude Include="NotMinus.h" />
     <ClInclude Include="NullExpressionException.h" />
     <ClInclude Include="Or.h" />
     <ClInclude Include="OrMax.h" />

@@ -6,7 +6,7 @@
 #include "OrMax.h"
 #include "OrPlus.h"
 #include "IsTriangle.h"
-#include "NotMinus1.h"
+#include "NotMinus.h"
 #include "ThenMin.h"
 #include "ValueModel.h"
 #include "CogDefuzz.h"
@@ -63,7 +63,7 @@ void testIsTriangle()
 void testProf()
 {
 	//operators
-	NotMinus1<float>        opNot;
+	NotMinus<float>        opNot;
 	AndMin<float>           opAnd;
 	OrMax<float>            opOr;
 	ThenMin<float>          opThen;
@@ -129,7 +129,7 @@ void testProf()
 void testMamdani()
 {
 	//operators
-	NotMinus1<float>        opNot;
+	NotMinus<float>        opNot;
 	AndMin<float>           opAnd;
 	OrMax<float>            opOr;
 	ThenMin<float>          opThen;
@@ -202,7 +202,7 @@ void testMamdani()
 void testSugenoDefuzz()
 {
 	//operators
-	NotMinus1<float>    opNot;
+	NotMinus<float>    opNot;
 	AndMin<float>       opAnd;
 	OrMax<float>        opOr;
 	SugenoThen<float>   opThen;
@@ -292,8 +292,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//testIsTriangle();
 
 	//testProf();
-	//testMamdani();
-	testSugenoDefuzz();
+	testMamdani();
+	//testSugenoDefuzz();
 
 	return 0;
 }

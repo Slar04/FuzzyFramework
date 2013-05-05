@@ -7,6 +7,7 @@ namespace core
 	class UnaryExpression
 	{
 	public:
+		UnaryExpression() {};
 		virtual ~UnaryExpression() {};
 
 		virtual T Evaluate(Expression<T>*) const = 0;

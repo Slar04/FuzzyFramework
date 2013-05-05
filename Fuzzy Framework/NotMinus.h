@@ -1,21 +1,21 @@
-#ifndef NOTMINUS1_H
-#define NOTMINUS1_H
+#ifndef NOTMINUS_H
+#define NOTMINUS_H
 
 #include "Not.h"
 
 namespace fuzzy
 {
 	template <class T>
-	class NotMinus1: public Not<T>
+	class NotMinus: public Not<T>
 	{
 	public:
-		NotMinus1() {};
-		virtual ~NotMinus1() {};
+		NotMinus() {};
+		virtual ~NotMinus() {};
 		virtual T Evaluate(core::Expression<T>*) const;
 	};
 
 	template <class T>
-	T NotMinus1<T>::Evaluate (core::Expression<T>* o) const
+	T NotMinus<T>::Evaluate (core::Expression<T>* o) const
 	{
 		T m = -(o->Evaluate());
 		return m;
