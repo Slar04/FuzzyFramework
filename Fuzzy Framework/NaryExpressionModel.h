@@ -10,15 +10,15 @@ namespace core
 	{
 	public:
 		NaryExpressionModel() {};
-		NaryExpressionModel(NaryExpression<T>* operateur, std::vector<Expression<T>*>* operandes):operateur(operateur), operandes(operandes) {};
+		NaryExpressionModel(NaryExpression<T>* operateur, std::vector<const Expression<T>*>* operandes):operateur(operateur), operandes(operandes) {};
 		virtual ~NaryExpressionModel() {};
 
 		virtual T Evaluate() const;
-		virtual T Evaluate(std::vector<Expression<T>*>*) const;
+		virtual T Evaluate(std::vector<const Expression<T>*>*) const;
 
 	private:
 		NaryExpression<T>* operateur;
-		std::vector<Expression<T>*>* operandes;
+		std::vector<const Expression<T>*>* operandes;
 	};
 
 	template <class T>
@@ -31,7 +31,7 @@ namespace core
 	}
 
 	template <class T>
-	T NaryExpressionModel<T>::Evaluate(std::vector<Expression<T>*>* operands) const
+	T NaryExpressionModel<T>::Evaluate(std::vector<const Expression<T>*>* operands) const
 	{
 		if (operateur == NULL)
 			throw new NullExpressionException("ope null");

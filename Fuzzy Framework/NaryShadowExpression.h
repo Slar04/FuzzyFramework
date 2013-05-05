@@ -13,7 +13,7 @@ namespace core
 
 		void SetTarget(NaryExpression<T>*);
 		virtual NaryExpression<T>* GetTarget();
-		T Evaluate(std::vector<Expression<T>*>* operands) const;
+		T Evaluate(std::vector<const Expression<T>*>* operands) const;
 
 	private:
 		NaryExpression<T>* target;
@@ -32,7 +32,7 @@ namespace core
 	}
 
 	template <class T>
-	T NaryShadowExpression<T>::Evaluate(std::vector<Expression<T>*>* operands) const
+	T NaryShadowExpression<T>::Evaluate(std::vector<const Expression<T>*>* operands) const
 	{
 		if (target == NULL)
 			throw new NullExpressionException("target null");

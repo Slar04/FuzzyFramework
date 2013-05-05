@@ -37,8 +37,8 @@ namespace fuzzy
 		virtual Expression<T>* NewAgg(Expression<T>*, Expression<T>*);
 		virtual Expression<T>* NewDefuzz(Expression<T>*, Expression<T>*, const T&, const T&, const T&);
 		virtual Expression<T>* NewIs(Is<T>*, Expression<T>*);
-        virtual Expression<T>* NewSugeno(std::vector<Expression<T>*>*);
-        virtual Expression<T>* NewNConclusion(std::vector<Expression<T>*>*);
+        virtual Expression<T>* NewSugeno(std::vector<const Expression<T>*>*);
+        virtual Expression<T>* NewNConclusion(std::vector<const Expression<T>*>*);
 
 		void ChangeNot(Not<T>*);
 		void ChangeAnd(And<T>*);
@@ -161,13 +161,13 @@ namespace fuzzy
 	}
 
 	template <class T>
-    Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<Expression<T>*>* operands)
+    Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<const Expression<T>*>* operands)
     {
         return NewNary(sugeno, operands);
     }
 
     template <class T>
-    Expression<T>* FuzzyFactory<T>::NewNConclusion(std::vector<Expression<T>*>* operands)
+    Expression<T>* FuzzyFactory<T>::NewNConclusion(std::vector<const Expression<T>*>* operands)
     {
         return NewNary(conclusion, operands);
     }

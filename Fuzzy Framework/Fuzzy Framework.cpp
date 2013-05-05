@@ -232,45 +232,42 @@ void testSugenoDefuzz()
 	ValueModel<float> food(0);
 
 	//output : ces variables vont stocker le résultat de SujenoConclusion (zi)
-	std::vector<Expression<float>*> SC_service_food;
+	std::vector<const Expression<float>*> SC_service_food;
 	SC_service_food.push_back(&service);
 	SC_service_food.push_back(&food);
 
-	std::vector<Expression<float>*> SC_service;
+	std::vector<const Expression<float>*> SC_service;
 	SC_service.push_back(&service);
 
 	//rules
-	Expression<float> *r =
+	std::vector<const Expression<float>*> rules;
+
+	rules.push_back(
 		f.NewThen(
 			f.NewOr(
 				f.NewIs(&poor, &service),
 				f.NewIs(&rancid, &food)
 			),
 			f.NewNConclusion(&SC_service_food)
-		);
+		));
 
-	Expression<float> *r1 =
+	rules.push_back(
 		f.NewThen(
 			f.NewIs(&good, &service),
 			f.NewNConclusion(&SC_service)
-		);
+		));
 
-	Expression<float> *r2 =
+	rules.push_back(
 		f.NewThen(
 			f.NewOr(
 				f.NewIs(&excellent, &service),
 				f.NewIs(&delicious, &food)
 			),
 			f.NewNConclusion(&SC_service_food)
-		);
-
-	std::vector<Expression<float>*> operands;
-	operands.push_back(r);
-	operands.push_back(r1);
-	operands.push_back(r2);
+		));
 
 	//defuzzification
-	Expression<float> *system = f.NewSugeno(&operands);
+	Expression<float> *system = f.NewSugeno(&rules);
 
 	//apply input
 	float s, foo;

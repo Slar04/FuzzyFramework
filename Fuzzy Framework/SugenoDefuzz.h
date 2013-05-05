@@ -12,13 +12,13 @@ namespace fuzzy
         SugenoDefuzz() {};
         virtual ~SugenoDefuzz() {};
 
-        virtual T Evaluate(std::vector<Expression<T>*>* operands) const;
+        virtual T Evaluate(std::vector<const Expression<T>*>* operands) const;
     };
 
     template <class T>
-    T SugenoDefuzz<T>::Evaluate(std::vector<Expression<T>*>* operands) const
+    T SugenoDefuzz<T>::Evaluate(std::vector<const Expression<T>*>* operands) const
     {
-		std::vector<Expression<T>*>::iterator it;
+		std::vector<const Expression<T>*>::const_iterator it;
 
 		T num = 0;
 		T denum = 0;
