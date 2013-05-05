@@ -12,29 +12,23 @@ namespace fuzzy
 	{
 	public:
 		IsTriangle()  {};
-		IsTriangle(T _min, T _mid, T _max): min(_min), mid(_mid), max(_max) {};
+		IsTriangle(T min, T mid, T max): min(min), mid(mid), max(max) {};
 		virtual ~IsTriangle() {};
 		virtual T Evaluate(core::Expression<T>*) const;
 
 	private:
-		T min;
-		T mid;
-		T max;
+		T min, mid, max;
 	};
 
 	template <class T>
-	T IsTriangle<T>::Evaluate (core::Expression<T>* o) const
+	T IsTriangle<T>::Evaluate (core::Expression<T>* value) const
 	{
-		T v = o->Evaluate();
+		T v = value->Evaluate();
 
-		if(v > min && v < mid)
-			return (v - min) / (mid - min);
-		if (v == mid)
-			return 1;
-		if(v > mid && v < max)
-			return (max - v) / (max - mid);
-		
-		return 0;
+		if (v <= min || v >= max)
+			return 0;
+
+		return v <= mid ? (v - min) / (mid - min) : (max - v) / (max - mid);
 	}
 }
 
