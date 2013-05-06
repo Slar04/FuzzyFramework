@@ -26,15 +26,9 @@ void testProf()
 	fuzzy::ThenMin<float>          opThen;
 	fuzzy::AggPlus<float>          opAgg;
 	fuzzy::CogDefuzz<float>        opDefuzz;
-	fuzzy::SugenoDefuzz<float>     opSugDefuzz;
-
-	std::vector<float> coef;
-	coef.push_back(1);
-	coef.push_back(1);
-	fuzzy::SugenoConclusion<float> opConclusion(&coef);
 
 	//fuzzy expession factory
-	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz,&opSugDefuzz,&opConclusion);
+	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz);
 
 	//membership function
 	//service
@@ -48,7 +42,6 @@ void testProf()
 
 	//values
 	core::ValueModel<float> service(0);
-	core::ValueModel<float> food(0);
 	core::ValueModel<float> tips(0);
 
 	core::Expression<float> *r =
@@ -70,11 +63,12 @@ void testProf()
 		);
 
 	//defuzzification
-	core::Expression<float> *system = f.NewDefuzz(&tips, r, 0, 30, 1);
+	core::Expression<float> *system = f.NewDefuzz(&tips, r, 0, 25, 1);
 
 	//apply input
 	float s;
-	while(true)
+
+	while (true)
 	{
 		std::cout << "service : ";
 		std::cin >> s;
@@ -144,7 +138,7 @@ void testMamdani()
 	//apply input
 	float s, fo;
 
-	while(true)
+	while (true)
 	{
 		std::cout << "service : ";
 		std::cin >> s;
@@ -228,7 +222,7 @@ void testSugenoDefuzz()
 
 	//apply input
 	float s, foo;
-	while(true)
+	while (true)
 	{
 		std::cout << "service : ";
 		std::cin >> s;
@@ -242,8 +236,8 @@ void testSugenoDefuzz()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//testProf();
-	testMamdani();
+	testProf();
+	//testMamdani();
 	//testSugenoDefuzz();
 
 	return 0;

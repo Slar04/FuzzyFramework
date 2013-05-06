@@ -1,6 +1,8 @@
 #ifndef SUGENOCONCLUSION_H
 #define SUGENOCONCLUSION_H
 
+#include "NaryExpression.h"
+
 namespace fuzzy
 {
     template <class T>
