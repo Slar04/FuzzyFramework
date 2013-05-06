@@ -1,7 +1,6 @@
 #ifndef ANDMULT_H
 #define ANDMULT_H
 
-#include "Expression.h"
 #include "And.h"
 
 namespace fuzzy

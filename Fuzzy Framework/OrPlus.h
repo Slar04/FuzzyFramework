@@ -1,7 +1,6 @@
 #ifndef ORPLUS_H
 #define ORPLUS_H
 
-#include "Expression.h"
 #include "Or.h"
 
 namespace fuzzy

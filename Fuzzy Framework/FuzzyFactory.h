@@ -2,17 +2,14 @@
 #define FUZZYFACTORY_H
 
 #include "ExpressionFactory.h"
-#include "Is.h"
 #include "Not.h"
 #include "And.h"
 #include "Or.h"
 #include "Then.h"
 #include "Agg.h"
-
 #include "MamdaniDefuzz.h"
 #include "SugenoDefuzz.h"
 #include "SugenoConclusion.h"
-
 #include "UnaryShadowExpression.h"
 #include "BinaryShadowExpression.h"
 #include "NaryShadowExpression.h"

@@ -1,6 +1,8 @@
 #ifndef UNARYEXPRESSIONMODEL_H
 #define UNARYEXPRESSIONMODEL_H
 
+#include "NullExpressionException.h"
+
 namespace core
 {
 	template <class T>

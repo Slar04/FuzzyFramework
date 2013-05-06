@@ -1,8 +1,6 @@
 #ifndef COGDEFUZZ_H
 #define COGDEFUZZ_H
 
-#include <vector>
-#include <numeric>
 #include "MamdaniDefuzz.h"
 
 namespace fuzzy

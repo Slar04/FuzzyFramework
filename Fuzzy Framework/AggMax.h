@@ -1,7 +1,6 @@
 #ifndef AGGMAX_H
 #define AGGMAX_H
 
-#include "Expression.h"
 #include "Agg.h"
 
 namespace fuzzy

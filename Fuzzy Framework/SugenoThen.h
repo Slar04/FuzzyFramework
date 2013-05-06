@@ -1,8 +1,6 @@
 #ifndef SUGENOTHEN_H
 #define SUGENOTHEN_H
 
-#include "Then.h"
-
 namespace fuzzy
 {
     template <class T>

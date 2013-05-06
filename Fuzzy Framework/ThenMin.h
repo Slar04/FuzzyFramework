@@ -1,7 +1,6 @@
 #ifndef THENMIN_H
 #define THENMIN_H
 
-#include "Expression.h"
 #include "Then.h"
 
 namespace fuzzy

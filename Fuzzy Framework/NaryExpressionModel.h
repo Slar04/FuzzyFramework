@@ -1,7 +1,7 @@
 #ifndef NARYEXPRESSIONMODEL_H
 #define NARYEXPRESSIONMODEL_H
 
-#include "NaryExpression.h"
+#include "NullExpressionException.h"
 
 namespace core
 {

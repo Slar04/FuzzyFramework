@@ -1,17 +1,18 @@
 #include "stdafx.h"
 
-#include "NullExpressionException.h"
-#include "AndMin.h"
-#include "AndMult.h"
-#include "OrMax.h"
-#include "OrPlus.h"
-#include "IsTriangle.h"
+#include "Expression.h"
 #include "NotMinus.h"
+#include "AndMin.h"
+#include "OrMax.h"
 #include "ThenMin.h"
-#include "ValueModel.h"
-#include "CogDefuzz.h"
 #include "AggPlus.h"
 #include "AggMax.h"
+#include "IsTriangle.h"
+#include "ValueModel.h"
+
+#include "CogDefuzz.h"
+#include "SugenoDefuzz.h"
+#include "SugenoConclusion.h"
 #include "SugenoThen.h"
 
 #include "FuzzyFactory.h"
@@ -19,7 +20,7 @@
 void testProf()
 {
 	//operators
-	fuzzy::NotMinus<float>        opNot;
+	fuzzy::NotMinus<float>         opNot;
 	fuzzy::AndMin<float>           opAnd;
 	fuzzy::OrMax<float>            opOr;
 	fuzzy::ThenMin<float>          opThen;

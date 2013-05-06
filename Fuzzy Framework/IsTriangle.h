@@ -1,8 +1,6 @@
 #ifndef ISTRIANGLE_H
 #define ISTRIANGLE_H
 
-#include "UnaryExpression.h"
-#include "Expression.h"
 #include "Is.h"
 
 namespace fuzzy
