@@ -1,5 +1,5 @@
-#ifndef ValueModel_H
-#define ValueModel_H
+#ifndef VALUEMODEL_H
+#define VALUEMODEL_H
 
 namespace core
 {

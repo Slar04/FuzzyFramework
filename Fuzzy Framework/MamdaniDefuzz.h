@@ -4,12 +4,10 @@
 #include "BinaryExpression.h"
 #include "Evaluator.h"
 
-using namespace core;
-
 namespace fuzzy
 {
 	template <class T>
-	class MamdaniDefuzz: public BinaryExpression<T>
+	class MamdaniDefuzz: public core::BinaryExpression<T>
 	{
 	public:
 		typedef std::pair<std::vector<T>, std::vector<T>> Shape;
@@ -22,7 +20,7 @@ namespace fuzzy
 		virtual void SetMax(const T& _max)   { max = _max; }
 		virtual void SetStep(const T& _step) { step = _step; }
 
-		virtual T Evaluate(Expression<T>*, Expression<T>*) const;
+		virtual T Evaluate(core::Expression<T>*, core::Expression<T>*) const;
 
 	protected:
 		virtual T Defuzz(const Shape&) const = 0;
@@ -32,10 +30,10 @@ namespace fuzzy
 	};
 
 	template <class T>
-	T MamdaniDefuzz<T>::Evaluate(Expression<T>* l, Expression<T>* r) const
+	T MamdaniDefuzz<T>::Evaluate(core::Expression<T>* l, core::Expression<T>* r) const
 	{
 		Evaluator<T> e;
-		Evaluator<T>::Shape s = e.BuildShape(min, max, step, (ValueModel<T>*) l, r);
+		Evaluator<T>::Shape s = e.BuildShape(min, max, step, (core::ValueModel<T>*) l, r);
 
 		return Defuzz(s);
 	}

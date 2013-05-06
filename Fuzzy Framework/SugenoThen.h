@@ -12,7 +12,7 @@ namespace fuzzy
 		SugenoThen():premiseValue(0) {};
         virtual ~SugenoThen() {};
 
-        virtual T Evaluate(Expression<T>*, Expression<T>*) const;
+        virtual T Evaluate(core::Expression<T>*, core::Expression<T>*) const;
         virtual T getPremiseValue();
 
     public:
@@ -20,7 +20,7 @@ namespace fuzzy
     };
 
     template <class T>
-    T SugenoThen<T>::Evaluate(Expression<T>* l, Expression<T>* r) const
+    T SugenoThen<T>::Evaluate(core::Expression<T>* l, core::Expression<T>* r) const
     {
         premiseValue = l->Evaluate();
 

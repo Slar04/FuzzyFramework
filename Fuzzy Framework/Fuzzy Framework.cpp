@@ -16,85 +16,41 @@
 
 #include "FuzzyFactory.h"
 
-using namespace core;
-using namespace fuzzy;
-
-void testAndMin()
-{
-	AndMin<float> op;
-	ValueModel<float>* v1 = new ValueModel<float>(0.3f);
-	ValueModel<float>* v2 = new ValueModel<float>(0.5f);
-	std::cout << "AndMin(" << v1->Evaluate() << ", " << v2->Evaluate() << "): " << op.Evaluate(v1, v2) << std::endl;
-}
-
-void testAndMult()
-{
-	AndMult<float> op;
-	ValueModel<float>* v1 = new ValueModel<float>(0.3f);
-	ValueModel<float>* v2 = new ValueModel<float>(0.5f);
-	std::cout << "AndMult(" << v1->Evaluate() << ", " << v2->Evaluate() << "): " << op.Evaluate(v1, v2) << std::endl;
-}
-
-void testOrMax()
-{
-	OrMax<float> op;
-	ValueModel<float>* v1 = new ValueModel<float>(0.3f);
-	ValueModel<float>* v2 = new ValueModel<float>(0.5f);
-	std::cout << "OrMax(" << v1->Evaluate() << ", " << v2->Evaluate() << "): " << op.Evaluate(v1, v2) << std::endl;
-}
-
-void testOrPlus()
-{
-	OrPlus<float> op;
-	ValueModel<float>* v1 = new ValueModel<float>(0.3f);
-	ValueModel<float>* v2 = new ValueModel<float>(0.5f);
-	std::cout << "AndMult(" << v1->Evaluate() << ", " << v2->Evaluate() << "): " << op.Evaluate(v1, v2) << std::endl;
-}
-
-void testIsTriangle()
-{
-	IsTriangle<float> op(0.2f, 0.4f, 0.7f);
-	ValueModel<float>* v1 = new ValueModel<float>(0.3f);
-	ValueModel<float>* v2 = new ValueModel<float>(0.5f);
-	std::cout << "IsTriangle(" << v1->Evaluate() << "): " << op.Evaluate(v1) << std::endl;
-	std::cout << "IsTriangle(" << v2->Evaluate() << "): " << op.Evaluate(v2) << std::endl;
-}
-
 void testProf()
 {
 	//operators
-	NotMinus<float>        opNot;
-	AndMin<float>           opAnd;
-	OrMax<float>            opOr;
-	ThenMin<float>          opThen;
-	AggPlus<float>          opAgg;
-	CogDefuzz<float>        opDefuzz;
-	SugenoDefuzz<float>     opSugDefuzz;
+	fuzzy::NotMinus<float>        opNot;
+	fuzzy::AndMin<float>           opAnd;
+	fuzzy::OrMax<float>            opOr;
+	fuzzy::ThenMin<float>          opThen;
+	fuzzy::AggPlus<float>          opAgg;
+	fuzzy::CogDefuzz<float>        opDefuzz;
+	fuzzy::SugenoDefuzz<float>     opSugDefuzz;
 
 	std::vector<float> coef;
 	coef.push_back(1);
 	coef.push_back(1);
-	SugenoConclusion<float> opConclusion = SugenoConclusion<float>(&coef);
+	fuzzy::SugenoConclusion<float> opConclusion(&coef);
 
 	//fuzzy expession factory
-	FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz,&opSugDefuzz,&opConclusion);
+	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz,&opSugDefuzz,&opConclusion);
 
 	//membership function
 	//service
-	IsTriangle<float> poor(-5,0,5);
-	IsTriangle<float> good(0,5,10);
-	IsTriangle<float> excellent(5,10,15);
+	fuzzy::IsTriangle<float> poor(-5,0,5);
+	fuzzy::IsTriangle<float> good(0,5,10);
+	fuzzy::IsTriangle<float> excellent(5,10,15);
 	//tips
-	IsTriangle<float> cheap(0,5,10);
-	IsTriangle<float> average(10,15,20);
-	IsTriangle<float> generous(20,25,30);
+	fuzzy::IsTriangle<float> cheap(0,5,10);
+	fuzzy::IsTriangle<float> average(10,15,20);
+	fuzzy::IsTriangle<float> generous(20,25,30);
 
 	//values
-	ValueModel<float> service(0);
-	ValueModel<float> food(0);
-	ValueModel<float> tips(0);
+	core::ValueModel<float> service(0);
+	core::ValueModel<float> food(0);
+	core::ValueModel<float> tips(0);
 
-	Expression<float> *r =
+	core::Expression<float> *r =
 		f.NewAgg(
 			f.NewAgg(
 				f.NewThen(
@@ -113,7 +69,7 @@ void testProf()
 		);
 
 	//defuzzification
-	Expression<float> *system = f.NewDefuzz(&tips, r, 0, 30, 1);
+	core::Expression<float> *system = f.NewDefuzz(&tips, r, 0, 30, 1);
 
 	//apply input
 	float s;
@@ -129,35 +85,35 @@ void testProf()
 void testMamdani()
 {
 	//operators
-	NotMinus<float>        opNot;
-	AndMin<float>           opAnd;
-	OrMax<float>            opOr;
-	ThenMin<float>          opThen;
-	AggPlus<float>          opAgg;
-	CogDefuzz<float>        opDefuzz;
+	fuzzy::NotMinus<float>        opNot;
+	fuzzy::AndMin<float>           opAnd;
+	fuzzy::OrMax<float>            opOr;
+	fuzzy::ThenMin<float>          opThen;
+	fuzzy::AggPlus<float>          opAgg;
+	fuzzy::CogDefuzz<float>        opDefuzz;
 
 	//fuzzy expession factory
-	FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz);
+	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz);
 
 	//membership function
 	//service
-	IsTriangle<float> poor(-5,0,5);
-	IsTriangle<float> good(0,5,10);
-	IsTriangle<float> excellent(5,10,15);
+	fuzzy::IsTriangle<float> poor(-5,0,5);
+	fuzzy::IsTriangle<float> good(0,5,10);
+	fuzzy::IsTriangle<float> excellent(5,10,15);
 	//food
-	IsTriangle<float> rancid(-5,0,5);
-	IsTriangle<float> delicious(5,10,15);
+	fuzzy::IsTriangle<float> rancid(-5,0,5);
+	fuzzy::IsTriangle<float> delicious(5,10,15);
 	//tips
-	IsTriangle<float> cheap(0,5,10);
-	IsTriangle<float> average(10,15,20);
-	IsTriangle<float> generous(20,25,30);
+	fuzzy::IsTriangle<float> cheap(0,5,10);
+	fuzzy::IsTriangle<float> average(10,15,20);
+	fuzzy::IsTriangle<float> generous(20,25,30);
 
 	//values
-	ValueModel<float> service(0);
-	ValueModel<float> food(0);
-	ValueModel<float> tips(0);
+	core::ValueModel<float> service(0);
+	core::ValueModel<float> food(0);
+	core::ValueModel<float> tips(0);
 
-	Expression<float> *r =
+	core::Expression<float> *r =
 		f.NewAgg(
 			f.NewAgg(
 				f.NewThen(
@@ -182,7 +138,7 @@ void testMamdani()
 		);
 
 	//defuzzification
-	Expression<float> *system = f.NewDefuzz(&tips, r, 0, 25, 1);
+	core::Expression<float> *system = f.NewDefuzz(&tips, r, 0, 25, 1);
 
 	//apply input
 	float s, fo;
@@ -202,45 +158,45 @@ void testMamdani()
 void testSugenoDefuzz()
 {
 	//operators
-	NotMinus<float>    opNot;
-	AndMin<float>       opAnd;
-	OrMax<float>        opOr;
-	SugenoThen<float>   opThen;
-	AggMax<float>       opAgg;
-	CogDefuzz<float>    opDefuzz;
-	SugenoDefuzz<float> opSugDefuzz;
+	fuzzy::NotMinus<float>     opNot;
+	fuzzy::AndMin<float>       opAnd;
+	fuzzy::OrMax<float>        opOr;
+	fuzzy::SugenoThen<float>   opThen;
+	fuzzy::AggMax<float>       opAgg;
+	fuzzy::CogDefuzz<float>    opDefuzz;
+	fuzzy::SugenoDefuzz<float> opSugDefuzz;
 
 	std::vector<float> coef;
 	coef.push_back(1);
 	coef.push_back(1);
 	coef.push_back(1);
-	SugenoConclusion<float> opConclusion = SugenoConclusion<float>(&coef);
+	fuzzy::SugenoConclusion<float> opConclusion(&coef);
 
 	//fuzzy expession factory
-	FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz,&opSugDefuzz,&opConclusion);
+	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz,&opSugDefuzz,&opConclusion);
 
 	//membership function
 	// service
-	IsTriangle<float> poor(-5,0,5);
-	IsTriangle<float> good(0,5,10);
-	IsTriangle<float> excellent(5,10,15);
+	fuzzy::IsTriangle<float> poor(-5,0,5);
+	fuzzy::IsTriangle<float> good(0,5,10);
+	fuzzy::IsTriangle<float> excellent(5,10,15);
 	// food
-	IsTriangle<float> rancid(-5,0,5);
-	IsTriangle<float> delicious(5,10,15);
+	fuzzy::IsTriangle<float> rancid(-5,0,5);
+	fuzzy::IsTriangle<float> delicious(5,10,15);
 	//values
-	ValueModel<float> service(0);
-	ValueModel<float> food(0);
+	core::ValueModel<float> service(0);
+	core::ValueModel<float> food(0);
 
 	//output : ces variables vont stocker le résultat de SujenoConclusion (zi)
-	std::vector<const Expression<float>*> SC_service_food;
+	std::vector<const core::Expression<float>*> SC_service_food;
 	SC_service_food.push_back(&service);
 	SC_service_food.push_back(&food);
 
-	std::vector<const Expression<float>*> SC_service;
+	std::vector<const core::Expression<float>*> SC_service;
 	SC_service.push_back(&service);
 
 	//rules
-	std::vector<const Expression<float>*> rules;
+	std::vector<const core::Expression<float>*> rules;
 
 	rules.push_back(
 		f.NewThen(
@@ -267,7 +223,7 @@ void testSugenoDefuzz()
 		));
 
 	//defuzzification
-	Expression<float> *system = f.NewSugeno(&rules);
+	core::Expression<float> *system = f.NewSugeno(&rules);
 
 	//apply input
 	float s, foo;
@@ -285,12 +241,6 @@ void testSugenoDefuzz()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//testAndMin();
-	//testAndMult();
-	//testOrMax();
-	//testOrPlus();
-	//testIsTriangle();
-
 	//testProf();
 	testMamdani();
 	//testSugenoDefuzz();

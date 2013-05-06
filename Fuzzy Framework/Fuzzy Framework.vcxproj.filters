@@ -129,10 +129,10 @@
     <ClInclude Include="NullExpressionException.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
-    <ClInclude Include="Evaluator.h">
-      <Filter>Fichiers d%27en-tête\core</Filter>
-    </ClInclude>
     <ClInclude Include="NotMinus.h">
+      <Filter>Fichiers d%27en-tête\fuzzy</Filter>
+    </ClInclude>
+    <ClInclude Include="Evaluator.h">
       <Filter>Fichiers d%27en-tête\fuzzy</Filter>
     </ClInclude>
   </ItemGroup>
