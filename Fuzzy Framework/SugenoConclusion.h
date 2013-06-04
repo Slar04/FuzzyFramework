@@ -15,7 +15,7 @@ namespace fuzzy
         virtual T Evaluate(std::vector<const core::Expression<T>*>* operands) const;
 
     private:
-		std::vector<T> *coeff;
+		const std::vector<T> *coeff;
     };
 
     template <class T>

@@ -28,7 +28,7 @@ namespace fuzzy
 		{
 			core::BinaryExpressionModel<T>*  bem = (core::BinaryExpressionModel<T>*)  (*it);
 			core::BinaryShadowExpression<T>* bse = (core::BinaryShadowExpression<T>*) bem->GetOpe();
-			SugenoThen<T>*                   sth = (SugenoThen<T>*)             bse->GetTarget();
+			SugenoThen<T>*                   sth = (SugenoThen<T>*)                   bse->GetTarget();
 
 			num   += (*it)->Evaluate();
 			denum += sth->getPremiseValue();
