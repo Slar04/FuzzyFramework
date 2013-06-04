@@ -86,66 +86,6 @@ void testBinaryOperators()
 	assert(binary.Evaluate() == 2);
 }
 
-void testProf()
-{
-	//operators
-	fuzzy::NotMinus<float>         opNot;
-	fuzzy::AndMin<float>           opAnd;
-	fuzzy::OrMax<float>            opOr;
-	fuzzy::ThenMin<float>          opThen;
-	fuzzy::AggPlus<float>          opAgg;
-	fuzzy::CogDefuzz<float>        opDefuzz;
-
-	//fuzzy expession factory
-	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz);
-
-	//membership function
-	//service
-	fuzzy::IsTriangle<float> poor(-5,0,5);
-	fuzzy::IsTriangle<float> good(0,5,10);
-	fuzzy::IsTriangle<float> excellent(5,10,15);
-	//tips
-	fuzzy::IsTriangle<float> cheap(0,5,10);
-	fuzzy::IsTriangle<float> average(10,15,20);
-	fuzzy::IsTriangle<float> generous(20,25,30);
-
-	//values
-	core::ValueModel<float> service(0);
-	core::ValueModel<float> tips(0);
-
-	core::Expression<float> *r =
-		f.NewAgg(
-			f.NewAgg(
-				f.NewThen(
-					f.NewIs(&poor, &service),
-					f.NewIs(&cheap, &tips)
-				),
-				f.NewThen(
-					f.NewIs(&good, &service),
-					f.NewIs(&average, &tips)
-				)
-			),
-			f.NewThen(
-				f.NewIs(&excellent, &service),
-				f.NewIs(&generous, &tips)
-			)
-		);
-
-	//defuzzification
-	core::Expression<float> *system = f.NewDefuzz(&tips, r, 0, 25, 1);
-
-	//apply input
-	float s;
-
-	while (true)
-	{
-		std::cout << "service : ";
-		std::cin >> s;
-		service.SetValue(s);
-		std::cout << "tips -> " << system->Evaluate() << std::endl;
-	}
-}
-
 void testMamdani()
 {
 	//operators
@@ -308,7 +248,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	testUnaryOperators();
 	testBinaryOperators();
 
-	//testProf();
 	//testMamdani();
 	//testSugenoDefuzz();
 
