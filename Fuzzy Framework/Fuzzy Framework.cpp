@@ -247,9 +247,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	testUnaryOperators();
 	testBinaryOperators();
 
-	//testMamdani();
-	testSugenoDefuzz();
+	unsigned select;
+	std::cout << "1: Mamdani" << std::endl;
+	std::cout << "2: Sugeno" << std::endl;
+	std::cout << "> ";
+	std::cin >> select;
+
+	if (select == 1)
+		testMamdani();
+	else
+		testSugenoDefuzz();
 
 	return 0;
 }
-
