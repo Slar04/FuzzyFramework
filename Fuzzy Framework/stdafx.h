@@ -16,5 +16,6 @@
 #include <algorithm>
 #include <exception>
 #include <numeric>
+#include <assert.h>
 
 // TODO: faites référence ici aux en-têtes supplémentaires nécessaires au programme

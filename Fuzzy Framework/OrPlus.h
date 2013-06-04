@@ -19,7 +19,7 @@ namespace fuzzy
 	{
 		T lv = l->Evaluate();
 		T rv = r->Evaluate();
-		return lv+rv;
+		return (lv + rv < 1)? lv + rv : 1;
 	}
 }
 

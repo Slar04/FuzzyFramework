@@ -1,12 +1,15 @@
 #include "stdafx.h"
 
 #include "Expression.h"
-#include "NotMinus.h"
-#include "AndMin.h"
-#include "OrMax.h"
-#include "ThenMin.h"
-#include "AggPlus.h"
 #include "AggMax.h"
+#include "AggPlus.h"
+#include "AndMin.h"
+#include "AndMult.h"
+#include "NotMinus.h"
+#include "OrMax.h"
+#include "OrPlus.h"
+#include "ThenMin.h"
+#include "ThenMult.h"
 #include "IsTriangle.h"
 #include "ValueModel.h"
 
@@ -16,6 +19,72 @@
 #include "SugenoThen.h"
 
 #include "FuzzyFactory.h"
+
+void testUnaryOperators()
+{
+	core::ValueModel<float> v1(1);
+	core::ValueModel<float> v2(3);
+	core::ValueModel<float> v3(5);
+	core::ValueModel<float> v4(7);
+	assert(1 == v1.Evaluate());
+	assert(3 == v2.Evaluate());
+	assert(5 == v3.Evaluate());
+	assert(7 == v4.Evaluate());
+
+	fuzzy::IsTriangle<float> isTriangle(0, 5, 10);
+	core::ValueModel<float> isTriangleValueMin = isTriangle.Evaluate(&v1);
+	core::ValueModel<float> isTriangleValueMax = isTriangle.Evaluate(&v4);
+	assert(isTriangleValueMin.Evaluate() == 0.2f);
+	assert(isTriangleValueMax.Evaluate() == 0.6f);
+
+	core::UnaryExpressionModel<float> unary(&isTriangle, &v1);
+	assert(unary.Evaluate() == 0.2f);
+}
+
+void testBinaryOperators()
+{
+	core::ValueModel<int> v1(1);
+	core::ValueModel<int> v2(2);
+
+	fuzzy::AggMax<int> aggMax;
+	core::ValueModel<int> aggMaxValue = aggMax.Evaluate(&v1, &v2);
+	assert(aggMaxValue.Evaluate() == 2);
+
+	fuzzy::AggPlus<int> aggPlus;
+	core::ValueModel<int> aggPlusValue = aggPlus.Evaluate(&v1, &v2);
+	assert(aggPlusValue.Evaluate() == 3);
+
+	fuzzy::AndMin<int> andMin;
+	core::ValueModel<int> andMinValue = andMin.Evaluate(&v1, &v2);
+	assert(andMinValue.Evaluate() == 1);
+
+	fuzzy::AndMult<int> andMult;
+	core::ValueModel<int> andMultValue = andMult.Evaluate(&v1, &v2);
+	assert(andMultValue.Evaluate() == 2);
+
+	fuzzy::NotMinus<int> notMinus;
+	core::ValueModel<int> notMinusValue = notMinus.Evaluate(&v1);
+	assert(notMinusValue.Evaluate() == -1);
+
+	fuzzy::OrMax<int> orMax;
+	core::ValueModel<int> orMaxValue = orMax.Evaluate(&v1, &v2);
+	assert(orMaxValue.Evaluate() == 2);
+
+	fuzzy::OrPlus<int> orPlus;
+	core::ValueModel<int> orPlusValue = orPlus.Evaluate(&v1, &v2);
+	assert(orPlusValue.Evaluate() == 1);
+
+	fuzzy::ThenMin<int> thenMin;
+	core::ValueModel<int> thenMinValue = thenMin.Evaluate(&v1, &v2);
+	assert(thenMinValue.Evaluate() == 1);
+
+	fuzzy::ThenMult<int> thenMult;
+	core::ValueModel<int> thenMultValue = thenMult.Evaluate(&v1, &v2);
+	assert(thenMultValue.Evaluate() == 2);
+
+	core::BinaryExpressionModel<int> binary(&andMult, &v1, &v2);
+	assert(binary.Evaluate() == 2);
+}
 
 void testProf()
 {
@@ -236,7 +305,10 @@ void testSugenoDefuzz()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	testProf();
+	testUnaryOperators();
+	testBinaryOperators();
+
+	//testProf();
 	//testMamdani();
 	//testSugenoDefuzz();
 
