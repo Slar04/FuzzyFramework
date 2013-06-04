@@ -22,7 +22,7 @@ namespace fuzzy
 	public:
 		FuzzyFactory() {};
 		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*);
-		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, MamdaniDefuzz<T>*, SugenoDefuzz<T>*, SugenoConclusion<T>*);
+		FuzzyFactory(Not<T>*, And<T>*, Or<T>*, Then<T>*, Agg<T>*, SugenoDefuzz<T>*, SugenoConclusion<T>*);
 		virtual ~FuzzyFactory();
 		
 		core::Expression<T>* NewNot(core::Expression<T>*);
@@ -80,7 +80,6 @@ namespace fuzzy
 		Or<T>* _or,
 		Then<T>* _then,
 		Agg<T>* _agg,
-		MamdaniDefuzz<T>* _defuzz,
 		SugenoDefuzz<T>* _sugeno,
 		SugenoConclusion<T>* _conclusion
 		)
@@ -90,7 +89,6 @@ namespace fuzzy
 		or         = new core::BinaryShadowExpression<T>(_or);
 		then       = new core::BinaryShadowExpression<T>(_then);
 		agg        = new core::BinaryShadowExpression<T>(_agg);
-		defuzz     = new core::BinaryShadowExpression<T>(_defuzz);
 		sugeno     = new core::NaryShadowExpression<T>(_sugeno);
 		conclusion = new core::NaryShadowExpression<T>(_conclusion);
 	}

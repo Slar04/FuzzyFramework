@@ -89,14 +89,14 @@ void testBinaryOperators()
 void testMamdani()
 {
 	//operators
-	fuzzy::NotMinus<float>        opNot;
+	fuzzy::NotMinus<float>         opNot;
 	fuzzy::AndMin<float>           opAnd;
 	fuzzy::OrMax<float>            opOr;
 	fuzzy::ThenMin<float>          opThen;
 	fuzzy::AggPlus<float>          opAgg;
 	fuzzy::CogDefuzz<float>        opDefuzz;
 
-	//fuzzy expession factory
+	//fuzzy expression factory
 	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz);
 
 	//membership function
@@ -145,7 +145,7 @@ void testMamdani()
 	core::Expression<float> *system = f.NewDefuzz(&tips, r, 0, 25, 1);
 
 	//apply input
-	float s, fo;
+	float s, foo;
 
 	while (true)
 	{
@@ -153,8 +153,8 @@ void testMamdani()
 		std::cin >> s;
 		service.SetValue(s);
 		std::cout << "food : ";
-		std::cin >> fo;
-		food.SetValue(fo);
+		std::cin >> foo;
+		food.SetValue(foo);
 		std::cout << "tips -> " << system->Evaluate() << std::endl;
 	}
 }
@@ -167,7 +167,6 @@ void testSugenoDefuzz()
 	fuzzy::OrMax<float>        opOr;
 	fuzzy::SugenoThen<float>   opThen;
 	fuzzy::AggMax<float>       opAgg;
-	fuzzy::CogDefuzz<float>    opDefuzz;
 	fuzzy::SugenoDefuzz<float> opSugDefuzz;
 
 	std::vector<float> coef;
@@ -176,8 +175,8 @@ void testSugenoDefuzz()
 	coef.push_back(1);
 	fuzzy::SugenoConclusion<float> opConclusion(&coef);
 
-	//fuzzy expession factory
-	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opDefuzz,&opSugDefuzz,&opConclusion);
+	//fuzzy expression factory
+	fuzzy::FuzzyFactory<float> f(&opNot,&opAnd,&opOr,&opThen,&opAgg,&opSugDefuzz,&opConclusion);
 
 	//membership function
 	// service
@@ -249,7 +248,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	testBinaryOperators();
 
 	//testMamdani();
-	//testSugenoDefuzz();
+	testSugenoDefuzz();
 
 	return 0;
 }
